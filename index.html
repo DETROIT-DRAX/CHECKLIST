@@ -1,0 +1,219 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Productivity System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+        <div class="logo">⌘ HACKER<span>SYS</span></div>
+
+        <p class="menu-label">MAIN MENU</p>
+        <nav>
+            <button class="nav-btn active" data-page="dashboard">⌂ Dashboard</button>
+            <button class="nav-btn" data-page="missions">▤ Missions</button>
+            <button class="nav-btn" data-page="focus">◷ Focus Timer</button>
+            <button class="nav-btn" data-page="analytics">▥ Analytics</button>
+            <button class="nav-btn" data-page="notes">✎ Notes</button>
+        </nav>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+            <small>PRODUCTIVITY MODE ACTIVE</small>
+        </div>
+    </aside>
+
+    <main class="main">
+
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">PERSONAL PRODUCTIVITY TERMINAL</p>
+                <h1 id="page-title">Dashboard</h1>
+            </div>
+            <div class="top-info">
+                <span id="date"></span>
+                <strong id="clock"></strong>
+            </div>
+        </header>
+
+        <!-- DASHBOARD -->
+        <section class="page active" id="dashboard">
+            <div class="welcome panel">
+                <div>
+                    <p class="eyebrow">SYSTEM MESSAGE // 001</p>
+                    <h2>WELCOME BACK, OPERATOR.</h2>
+                    <p>Your goals are waiting. Make today productive.</p>
+                </div>
+                <div class="welcome-icon">⌘</div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card panel">
+                    <span>TOTAL MISSIONS</span>
+                    <strong id="total-stat">0</strong>
+                    <small>All your tasks</small>
+                </div>
+                <div class="stat-card panel">
+                    <span>COMPLETED</span>
+                    <strong id="completed-stat">0</strong>
+                    <small>Finished missions</small>
+                </div>
+                <div class="stat-card panel">
+                    <span>PENDING</span>
+                    <strong id="pending-stat">0</strong>
+                    <small>Remaining missions</small>
+                </div>
+                <div class="stat-card panel">
+                    <span>PROGRESS</span>
+                    <strong id="progress-stat">0%</strong>
+                    <small>Overall completion</small>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="panel section-card">
+                    <div class="section-heading">
+                        <h3>MISSION PROGRESS</h3>
+                        <span id="progress-label">0%</span>
+                    </div>
+                    <div class="progress-track">
+                        <div id="progress-bar"></div>
+                    </div>
+                    <p class="muted" id="progress-message">Start your first mission.</p>
+                </div>
+
+                <div class="panel section-card">
+                    <h3>DAILY QUOTE</h3>
+                    <p class="quote" id="quote">"Small steps lead to big achievements."</p>
+                    <small class="muted">OPERATOR MOTIVATION</small>
+                </div>
+            </div>
+
+            <div class="panel section-card">
+                <div class="section-heading">
+                    <h3>RECENT MISSIONS</h3>
+                    <button class="text-btn" data-goto="missions">VIEW ALL →</button>
+                </div>
+                <div id="recent-tasks" class="task-list"></div>
+            </div>
+        </section>
+
+        <!-- MISSIONS -->
+        <section class="page" id="missions">
+            <div class="panel section-card">
+                <h3>ADD NEW MISSION</h3>
+
+                <form id="task-form" class="task-form">
+                    <input id="task-input" type="text"
+                        placeholder="Enter your mission..." maxlength="120" required>
+
+                    <select id="task-category">
+                        <option value="College">College</option>
+                        <option value="Skills">Skills</option>
+                        <option value="Personal">Personal</option>
+                    </select>
+
+                    <input id="task-date" type="date" aria-label="Due date">
+                    <button class="primary-btn" type="submit">+ ADD MISSION</button>
+                </form>
+            </div>
+
+            <div class="panel section-card">
+                <div class="section-heading">
+                    <h3>ALL MISSIONS</h3>
+                    <button class="text-btn" id="clear-completed">CLEAR COMPLETED</button>
+                </div>
+
+                <div class="filters">
+                    <input id="search-task" type="search" placeholder="Search missions...">
+                    <select id="filter-category">
+                        <option value="All">All Categories</option>
+                        <option value="College">College</option>
+                        <option value="Skills">Skills</option>
+                        <option value="Personal">Personal</option>
+                    </select>
+                    <select id="filter-status">
+                        <option value="All">All Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+
+                <div id="task-list" class="task-list"></div>
+            </div>
+        </section>
+
+        <!-- FOCUS TIMER -->
+        <section class="page" id="focus">
+            <div class="panel focus-panel">
+                <p class="eyebrow">FOCUS PROTOCOL</p>
+                <h2>DEEP WORK SESSION</h2>
+                <div class="timer" id="timer">25:00</div>
+                <p id="timer-status" class="muted">Ready to focus?</p>
+
+                <div class="timer-controls">
+                    <button class="primary-btn" id="start-timer">START</button>
+                    <button class="secondary-btn" id="pause-timer">PAUSE</button>
+                    <button class="secondary-btn" id="reset-timer">RESET</button>
+                </div>
+
+                <div class="timer-settings">
+                    <label>Focus minutes
+                        <input type="number" id="focus-minutes" min="1" max="120" value="25">
+                    </label>
+                    <label>Break minutes
+                        <input type="number" id="break-minutes" min="1" max="60" value="5">
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <!-- ANALYTICS -->
+        <section class="page" id="analytics">
+            <div class="stats-grid">
+                <div class="stat-card panel">
+                    <span>TOTAL MISSIONS</span>
+                    <strong id="analytics-total">0</strong>
+                </div>
+                <div class="stat-card panel">
+                    <span>COMPLETED MISSIONS</span>
+                    <strong id="analytics-completed">0</strong>
+                </div>
+                <div class="stat-card panel">
+                    <span>SUCCESS RATE</span>
+                    <strong id="analytics-rate">0%</strong>
+                </div>
+            </div>
+
+            <div class="panel section-card">
+                <h3>CATEGORY BREAKDOWN</h3>
+                <div id="category-stats"></div>
+            </div>
+        </section>
+
+        <!-- NOTES -->
+        <section class="page" id="notes">
+            <div class="panel section-card">
+                <h3>OPERATOR NOTES</h3>
+                <p class="muted">Write down ideas, reminders and important information.</p>
+                <textarea id="notes-area" placeholder="Write your notes here..."></textarea>
+                <button class="primary-btn" id="save-notes">SAVE NOTES</button>
+                <span id="notes-status" class="muted"></span>
+            </div>
+        </section>
+
+        <footer>HACKER PRODUCTIVITY SYSTEM <span> // VERSION 2.0</span></footer>
+
+    </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
